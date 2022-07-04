@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos de JavaScript</title>
+</head>
+<body>
+    <h1>JavaScript - prcatica 3</h1>
+
+    <hr>
+    <br>
+
+    <H3>Folio</H3>
+    <input type="button" value="Generar folio" id="boton" onclick="ActBoton();">
+    <hr>
+    
+
+    <table border="2">
+        <tbody>
+            <tr>
+                <td><div id="folio"></div></td>
+                <td><div id="hora"></div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+       
+        function GenFolio() {
+            let minchar = "abcdefghijklmnopqrstuvwxyz";
+            let maychar = minchar.toUpperCase();
+
+            let listam = [minchar,maychar]
+
+            function rand(x) {
+                let min = 0;
+                let max = listam[x].length;
+                let aleat = Math.floor(Math.random()*(max-min));
+                return aleat;
+            }
+
+            let fn1 = minchar[rand(0)] + minchar[rand(0)] + minchar[rand(0)] + minchar[rand(0)];
+            let fn2 = maychar[rand(1)] + maychar[rand(1)] + maychar[rand(1)] + maychar[rand(1)];
+
+            let date = new Date;
+            let fecha = `${date.getDate()}${date.getMonth()+1}${date.getFullYear()}`;
+            let hora = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+            let folio = {
+                fech: fecha,
+                alea: fn1+fn2,
+                hr: hora
+            };
+
+            return folio;
+       }
+
+       function ImpFolio() {
+            let fol = GenFolio().fech + GenFolio().alea;
+            document.getElementById("folio").innerHTML = fol;
+            console.log(fol);
+       }
+
+       function ImpHora() {
+            let hour = GenFolio().hr;
+            document.getElementById("hora").innerHTML = hour;
+            console.log(hour);
+       }
+
+       function ActBoton() {
+            ImpFolio();
+            ImpHora();
+       }
+
+    </script>
+</body>
+</html>
